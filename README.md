@@ -63,6 +63,9 @@ Kubernetes Archetecture
         and other k8s resources
     
 
-
+Docker Installation
+--------------------------------------------------
+   as per the pdf "Docker Installation on win 10 home.pdf"
+    
 
 
