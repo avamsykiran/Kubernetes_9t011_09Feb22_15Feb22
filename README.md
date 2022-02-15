@@ -28,7 +28,7 @@ Kubernetes
     Lab Setup on windows 10
         docker-desktop
         minikube                (k3s,kind...etc)
-        kubecli
+        kubectl
 
 Kubernetes resources / tools
 ------------------------------------------------------------
@@ -61,11 +61,20 @@ Kubernetes Archetecture
         pods
         services
         and other k8s resources
-    
 
 Docker Installation
 --------------------------------------------------
    as per the pdf "Docker Installation on win 10 home.pdf"
-    
 
+MiniKube installation
+-------------------------------------------------
+    downlaod from https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe
 
+kubectl installation
+-------------------------------------------------
+    download from https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe
+
+Case Study
+-------------------------------------------------
+    NodeJS ES6 rest api app.....
+    MongoDB as a database.
