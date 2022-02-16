@@ -1,27 +1,59 @@
 import service from './service'
 
-const getEmps = (req,resp) => resp.send(service.getEmps());
+const getEmps = (req,resp) => {
+    service.getEmps().
+        then(data => {
+            resp.status(200);
+            resp.send(data);
+        }).
+        catch(err =>{
+            resp.status(500);
+            resp.send();
+        });
+};
 
 const getEmpById = (req,resp) => {
     let id = req.params.id;
     if(id){
-        let emp = service.getEmpById(id);
-        emp?resp.send(emp):resp.end();
+        service.getEmpById(id).
+        then(emp => {
+            emp?resp.status(200):resp.status(404);
+            resp.send(emp);
+        }).
+        catch(err =>{
+            resp.status(500);
+            resp.send();
+        });
     }else{
-        resp.end();
+        resp.status(400);
+        resp.send();
     }
 };
 
 const saveEmp = (req,resp) => {
     let emp = req.body;
-    emp = service.saveEmp(emp);
-    resp.send(emp);
+    service.saveEmp(emp).
+    then(data => {
+        resp.status(201);
+        resp.send(data);
+    }).
+    catch(err =>{
+        resp.status(500);
+        resp.send();
+    });
 };
 
 const deleteEmp = (req,resp) => {
     let id = req.params.id;
-    service.deleteEmp(id);
-    resp.send();
+    service.deleteEmp(id).
+    then(() => {
+        resp.status(204);
+        resp.send();
+    }).
+    catch(err =>{
+        resp.status(500);
+        resp.send();
+    });
 };
 
 export default {getEmpById,getEmps,saveEmp,deleteEmp};

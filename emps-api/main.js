@@ -2,14 +2,23 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import app from './app/app';
+import env from './env';
 
-express.apply(cors());
-express.apply(bodyParser());
+let router = express.Router();
+router.get('/',app.getEmps);
+router.get('/:id',app.getEmpById);
+router.post('/',app.saveEmp);
+router.put('/',app.saveEmp);
+router.delete('/:id',app.deleteEmp);
 
-express.Router().get('/students',app.getEmps);
-express.Router().get('/students/:id',app.getEmpById);
-express.Router().post('/students',app.saveEmp);
-express.Router().put('/students',app.saveEmp);
-express.Router().delete('/students/:id',app.deleteEmp);
+let server = express();
 
-console.log("app is ready...!");
+server.use(bodyParser.urlencoded({extended:true}));
+server.use(bodyParser.json());
+server.use(cors());
+server.use("/students",router);
+
+server.listen(env.PORT,()=>{
+    console.log("app is ready...!");
+});
+
